@@ -1,0 +1,7 @@
+services:
+    Webgiciel2\InitBureauSecurite\:
+    resource: '../../*'
+    exclude:
+        - '../../DependencyInjection'
+        - '../../Entity'
+        - '../../InitBureauSecuriteBundle.php'

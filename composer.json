@@ -1,0 +1,17 @@
+{
+    "name": "webgiciel2/init-bureau-securite",
+    "description": "initialise la sécurité",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Webgiciel2\\InitBureauSecurite\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "stefLesage",
+            "email": "contact@webgiciel.com"
+        }
+    ],
+    "require": {}
+}
