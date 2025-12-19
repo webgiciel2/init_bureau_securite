@@ -13,24 +13,24 @@ use App\Entity\Securite\SecurAdmin;
 class InitBureauSecuriteManager
 {
     private string $lockFile;
-    private array $proprietaire;
-    private array $technicien;
 
     public function __construct(
         EntityManagerInterface $em,
         ParameterBagInterface $params,
         UserPasswordHasherInterface $passwordHasher,
         MailerInterface $mailer,
-        KernelInterface $kernel
+        KernelInterface $kernel,
+        private string $proprioUsername,
+        private string $proprioEmail,
+        private string $techUsername,
+        private string $techEmail
     ) {
         $this->em = $em;
         $this->passwordHasher = $passwordHasher;
         $this->mailer = $mailer;
 
-        $this->proprietaire = $params->get('init_bureau_securite.proprietaire');
-        $this->technicien = $params->get('init_bureau_securite.technicien');
-
         $this->lockFile = $kernel->getProjectDir() . '/var/init_bureau_securite.lock';
+
     }
 
     /**
@@ -51,16 +51,16 @@ class InitBureauSecuriteManager
 
         if (!$proprio) {
             $proprio = $this->createUser(
-                $this->proprietaire['username'],
-                $this->proprietaire['email'],
+                $this->proprioUsername,
+                $this->proprioEmail,
                 'ROLE_PROPRIO'
             );
         }
 
         if (!$tech) {
             $tech = $this->createUser(
-                $this->technicien['username'],
-                $this->technicien['email'],
+                $this->techUsername,
+                $this->techEmail,
                 'ROLE_TECHNICIEN'
             );
         }

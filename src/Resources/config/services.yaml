@@ -7,3 +7,9 @@ services:
     Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
         tags: ['kernel.event_subscriber']
 
+    Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager:
+        arguments:
+            $proprioUsername: '%env(SECUR_PROPRIO_USERNAME)%'
+            $proprioEmail: '%env(SECUR_PROPRIO_EMAIL)%'
+            $techUsername: '%env(SECUR_TECH_USERNAME)%'
+            $techEmail: '%env(SECUR_TECH_EMAIL)%'
