@@ -7,7 +7,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpKernel\KernelInterface;
-use App\Entity\Securite\SecurAdmin;
+
+use Webgiciel2\InitBureauSecurite\Entity\SecurAdmin
 
 class InitBureauSecuriteManager
 {

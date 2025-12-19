@@ -5,7 +5,8 @@ namespace Webgiciel2\InitBureauSecurite\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use App\Entity\Securite\SecurAdmin;
+
+use Webgiciel2\InitBureauSecurite\Entity\SecurAdmin
 
 class DefaultUserCreator
 {
