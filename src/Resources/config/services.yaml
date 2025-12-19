@@ -4,12 +4,14 @@ services:
         resource: '../../*'
         exclude: '../../{DependencyInjection,Entity,Tests}'
 
-    Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager:
-        arguments:
-            $proprioUsername: '%env(SECUR_PROPRIO_USERNAME)%'
-            $proprioEmail: '%env(SECUR_PROPRIO_EMAIL)%'
-            $techUsername: '%env(SECUR_TECH_USERNAME)%'
-            $techEmail: '%env(SECUR_TECH_EMAIL)%'
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            string $proprioUsername: '%env(SECUR_PROPRIO_USERNAME)%'
+            string $proprioEmail: '%env(SECUR_PROPRIO_EMAIL)%'
+            string $techUsername: '%env(SECUR_TECH_USERNAME)%'
+            string $techEmail: '%env(SECUR_TECH_EMAIL)%'
 
     Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
         arguments:

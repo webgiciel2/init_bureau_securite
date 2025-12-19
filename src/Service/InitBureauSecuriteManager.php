@@ -3,7 +3,6 @@
 namespace Webgiciel2\InitBureauSecurite\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -15,22 +14,18 @@ class InitBureauSecuriteManager
     private string $lockFile;
 
     public function __construct(
-        EntityManagerInterface $em,
-        ParameterBagInterface $params,
-        UserPasswordHasherInterface $passwordHasher,
-        MailerInterface $mailer,
+        private EntityManagerInterface $em,
+        private UserPasswordHasherInterface $passwordHasher,
+        private MailerInterface $mailer,
         KernelInterface $kernel,
+
+
         private string $proprioUsername,
         private string $proprioEmail,
         private string $techUsername,
         private string $techEmail
     ) {
-        $this->em = $em;
-        $this->passwordHasher = $passwordHasher;
-        $this->mailer = $mailer;
-
         $this->lockFile = $kernel->getProjectDir() . '/var/init_bureau_securite.lock';
-
     }
 
     /**
@@ -38,12 +33,12 @@ class InitBureauSecuriteManager
      */
     public function initialize(): void
     {
-        // 🔒 Si déjà initialisé → on sort
+        // Si déjà initialisé → on sort
         if (file_exists($this->lockFile)) {
             return;
         }
 
-        // 1️⃣ Vérifier si l’entity existe déjà en base
+        // Vérifier si l’entity existe déjà en base
         $repo = $this->em->getRepository(SecurAdmin::class);
 
         $proprio = $repo->findOneBy(['role' => 'ROLE_PROPRIO']);
@@ -67,11 +62,11 @@ class InitBureauSecuriteManager
 
         $this->em->flush();
 
-        // 2️⃣ Envoi des emails d’activation
+        // Envoi des emails d’activation
         $this->sendActivationEmail($proprio);
         $this->sendActivationEmail($tech);
 
-        // 3️⃣ Création du fichier lock
+        // Création du fichier lock
         file_put_contents(
             $this->lockFile,
             'initialized at ' . date('Y-m-d H:i:s')
@@ -89,12 +84,12 @@ class InitBureauSecuriteManager
         $user->setCodeVerif(bin2hex(random_bytes(16)));
 
         // Mot de passe temporaire
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $user,
-            bin2hex(random_bytes(8))
+        $user->setPassword(
+            $this->passwordHasher->hashPassword(
+                $user,
+                bin2hex(random_bytes(8))
+            )
         );
-
-        $user->setPassword($hashedPassword);
 
         $this->em->persist($user);
 
