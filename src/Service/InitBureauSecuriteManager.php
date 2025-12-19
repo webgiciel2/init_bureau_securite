@@ -8,7 +8,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-use Webgiciel2\InitBureauSecurite\Entity\SecurAdmin
+use Webgiciel2\InitBureauSecurite\Entity\SecurAdmin;
 
 class InitBureauSecuriteManager
 {

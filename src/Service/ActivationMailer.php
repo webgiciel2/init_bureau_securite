@@ -6,7 +6,7 @@ namespace Webgiciel2\InitBureauSecurite\Service;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
-use Webgiciel2\InitBureauSecurite\Entity\SecurAdmin
+use Webgiciel2\InitBureauSecurite\Entity\SecurAdmin;
 
 class ActivationMailer
 {
