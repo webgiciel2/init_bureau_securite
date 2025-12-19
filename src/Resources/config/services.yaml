@@ -1,7 +1,9 @@
+# src/Resources/config/services.yaml
 services:
     Webgiciel2\InitBureauSecurite\:
-    resource: '../../*'
-    exclude:
-        - '../../DependencyInjection'
-        - '../../Entity'
-        - '../../InitBureauSecuriteBundle.php'
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Entity,Tests}'
+
+    Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
+        tags: ['kernel.event_subscriber']
+
