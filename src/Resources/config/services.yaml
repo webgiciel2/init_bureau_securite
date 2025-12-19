@@ -4,9 +4,6 @@ services:
         resource: '../../*'
         exclude: '../../{DependencyInjection,Entity,Tests}'
 
-    Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
-        tags: ['kernel.event_subscriber']
-
     Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager:
         arguments:
             $proprioUsername: '%env(SECUR_PROPRIO_USERNAME)%'
@@ -19,3 +16,4 @@ services:
             $initManager: '@Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager'
         tags:
             - { name: kernel.event_subscriber }
+
