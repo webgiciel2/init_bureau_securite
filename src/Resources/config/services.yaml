@@ -12,6 +12,7 @@ services:
             string $proprioEmail: '%env(SECUR_PROPRIO_EMAIL)%'
             string $techUsername: '%env(SECUR_TECH_USERNAME)%'
             string $techEmail: '%env(SECUR_TECH_EMAIL)%'
+            string $appUrl: '%env(INIT_SECURITE_APP_URL)%'
 
     Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
         arguments:
