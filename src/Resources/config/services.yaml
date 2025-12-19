@@ -13,3 +13,9 @@ services:
             $proprioEmail: '%env(SECUR_PROPRIO_EMAIL)%'
             $techUsername: '%env(SECUR_TECH_USERNAME)%'
             $techEmail: '%env(SECUR_TECH_EMAIL)%'
+
+    Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
+        arguments:
+            $initManager: '@Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager'
+        tags:
+            - { name: kernel.event_subscriber }
