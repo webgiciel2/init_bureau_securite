@@ -1,9 +1,5 @@
 # src/Resources/config/services.yaml
 services:
-    Webgiciel2\InitBureauSecurite\:
-        resource: '../../*'
-        exclude: '../../{DependencyInjection,Entity,Tests}'
-
     _defaults:
         autowire: true
         autoconfigure: true
