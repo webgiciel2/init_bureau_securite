@@ -13,7 +13,7 @@ class ActivationMailer
     public function __construct(
         private MailerInterface $mailer,
         private string $appUrl,
-        private string $mailRobot
+        public $mailRobot
     ) {}
 
     public function sendActivationMail(SecurAdmin $user): void
