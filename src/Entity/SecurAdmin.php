@@ -38,6 +38,9 @@ class SecurAdmin implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $passwordResetAt = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isActive = false;
+
     /* ==========================
        GETTERS / SETTERS
        ========================== */
@@ -135,6 +138,17 @@ class SecurAdmin implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // Rien à faire pour l’instant
+    }
+
+    public function isActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+        return $this;
     }
 
 }
