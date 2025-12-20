@@ -12,7 +12,8 @@ class ActivationMailer
 {
     public function __construct(
         private MailerInterface $mailer,
-        private string $appUrl
+        private string $appUrl,
+        private string $mailRobot,
     ) {}
 
     public function sendActivationMail(SecurAdmin $user): void
@@ -24,7 +25,7 @@ class ActivationMailer
         );
 
         $email = (new Email())
-            ->from('stef.webgiciel@gmail.com')
+            ->from($mailRobot)
             ->to($user->getEmail())
             ->subject('Activation de votre compte')
             ->html("
