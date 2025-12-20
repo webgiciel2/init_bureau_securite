@@ -38,25 +38,30 @@ class InitBureauSecuriteManager
             return;
         }
 
-        // Vérifier si l’entity existe déjà en base
-        $repo = $this->em->getRepository(SecurAdmin::class);
+        try {
+            // Vérifier si l’entity existe déjà en base
+            $repo = $this->em->getRepository(SecurAdmin::class);
 
-        $this->createIfNotExists(
-            $repo,
-            $this->proprioUsername,
-            $this->proprioEmail,
-            'ROLE_PROPRIO'
-        );
+            $this->createIfNotExists(
+                $repo,
+                $this->proprioUsername,
+                $this->proprioEmail,
+                'ROLE_PROPRIO'
+            );
 
-        $this->createIfNotExists(
-            $repo,
-            $this->techUsername,
-            $this->techEmail,
-            'ROLE_TECHNICIEN'
-        );
+            $this->createIfNotExists(
+                $repo,
+                $this->techUsername,
+                $this->techEmail,
+                'ROLE_TECHNICIEN'
+            );
 
-        $this->em->flush();
-        $this->flagManager->markAsInitialized();
+            $this->em->flush();
+            $this->flagManager->markAsInitialized();
+        } catch (\Throwable $e) {
+            // Optionnel : log
+            throw $e;
+        }
     }
 
     private function createIfNotExists(

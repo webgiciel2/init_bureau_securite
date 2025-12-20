@@ -24,7 +24,7 @@ class ActivationMailer
         );
 
         $email = (new Email())
-            ->from('no-reply@site.local')
+            ->from('stef.webgiciel@gmail.com')
             ->to($user->getEmail())
             ->subject('Activation de votre compte')
             ->html("
