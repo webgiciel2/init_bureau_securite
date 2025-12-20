@@ -15,14 +15,6 @@ services:
             string $appUrl: '%env(INIT_SECURITE_APP_URL)%'
             string $projectDir: '%kernel.project_dir%'
 
-#    Webgiciel2\InitBureauSecurite\EventSubscriber\KernelRequestSubscriber:
-#        arguments:
-#            $initManager: '@Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager'
-#        tags:
-#            - { name: kernel.event_subscriber }
-
-
-
     Webgiciel2\InitBureauSecurite\:
         resource: '../vendor/webgiciel2/init-bureau-securite/src/*'
         autowire: true
