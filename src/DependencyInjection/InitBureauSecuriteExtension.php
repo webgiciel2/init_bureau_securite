@@ -1,6 +1,5 @@
 <?php
 
-// src/DependencyInjection/InitBureauSecuriteExtension.php
 namespace Webgiciel2\InitBureauSecurite\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,6 +18,4 @@ class InitBureauSecuriteExtension extends Extension
 
         $loader->load('services.yaml');
     }
-
-
 }
