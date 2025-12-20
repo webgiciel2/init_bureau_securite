@@ -13,7 +13,7 @@ class ActivationMailer
     public function __construct(
         private MailerInterface $mailer,
         private string $appUrl,
-        public $mailRobot
+        private string $mailRobot
     ) {}
 
     public function sendActivationMail(SecurAdmin $user): void
@@ -26,7 +26,7 @@ class ActivationMailer
 
         // le from est une variable
         $email = (new Email())
-            ->from($mailRobot)
+            ->from($this->mailRobot)
             ->to($user->getEmail())
             ->subject('Activation de votre compte')
             ->html("
