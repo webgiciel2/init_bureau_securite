@@ -2,12 +2,15 @@
 
 namespace Webgiciel2\InitBureauSecurite\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'secur_admin')]
-class SecurAdmin
+class SecurAdmin implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,7 +23,7 @@ class SecurAdmin
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     #[ORM\Column]
@@ -68,7 +71,10 @@ class SecurAdmin
 
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles ?? [];
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -120,4 +126,15 @@ class SecurAdmin
         $this->passwordResetAt = $passwordResetAt;
         return $this;
     }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Rien à faire pour l’instant
+    }
+
 }
