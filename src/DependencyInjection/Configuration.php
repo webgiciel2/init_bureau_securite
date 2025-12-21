@@ -25,6 +25,10 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('email')->isRequired()->end()
                     ->end()
                 ->end()
+                ->scalarNode('mail_robot')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
             ->end();
 
         return $treeBuilder;

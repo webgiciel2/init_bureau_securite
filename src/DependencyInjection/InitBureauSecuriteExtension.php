@@ -17,5 +17,14 @@ class InitBureauSecuriteExtension extends Extension
         );
 
         $loader->load('services.yaml');
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter(
+            'init_bureau_securite.mail_robot',
+            $config['mail_robot']
+        );
+
     }
 }
