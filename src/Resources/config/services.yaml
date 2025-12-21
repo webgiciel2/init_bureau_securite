@@ -9,6 +9,7 @@ services:
             string $techEmail: '%env(SECUR_TECH_EMAIL)%'
             string $appUrl: '%env(INIT_SECURITE_APP_URL)%'
             string $projectDir: '%kernel.project_dir%'
+            string $mailRobot: '%env(MAIL_ROBOT)%'
 
     Webgiciel2\InitBureauSecurite\:
         resource: '../../*'
