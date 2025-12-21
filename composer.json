@@ -1,7 +1,8 @@
 {
     "name": "webgiciel2/init-bureau-securite",
-    "description": "initialise la sécurité",
-    "type": "library",
+    "description": "Initialisation de la sécurité du back-office",
+    "type": "symfony-bundle",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Webgiciel2\\InitBureauSecurite\\": "src/"
@@ -13,5 +14,7 @@
             "email": "contact@webgiciel.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.2"
+    }
 }
