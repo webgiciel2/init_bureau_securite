@@ -3,13 +3,15 @@
 // src/Service/InitFlagManager.php
 namespace Webgiciel2\InitBureauSecurite\Service;
 
+use Symfony\Component\HttpKernel\KernelInterface;
+
 class InitFlagManager
 {
     private string $lockFile;
 
-    public function __construct(string $projectDir)
+    public function __construct(KernelInterface $kernel)
     {
-        $this->lockFile = $projectDir . '/var/init_bureau_securite.lock';
+        $this->lockFile = $kernel->getProjectDir() . '/var/init_bureau_securite.lock';
     }
 
     public function isInitialized(): bool
