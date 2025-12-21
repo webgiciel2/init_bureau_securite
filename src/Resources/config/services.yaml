@@ -2,13 +2,6 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        bind:
-            string $proprioUsername: '%env(SECUR_PROPRIO_USERNAME)%'
-            string $proprioEmail: '%env(SECUR_PROPRIO_EMAIL)%'
-            string $techUsername: '%env(SECUR_TECH_USERNAME)%'
-            string $techEmail: '%env(SECUR_TECH_EMAIL)%'
-            string $appUrl: '%env(INIT_SECURITE_APP_URL)%'
-            string $projectDir: '%kernel.project_dir%'
 
     Webgiciel2\InitBureauSecurite\:
         resource: '../../*'
@@ -19,3 +12,11 @@ services:
     Webgiciel2\InitBureauSecurite\Service\ActivationMailer:
         arguments:
             $mailRobot: '%init_bureau_securite.mail_robot%'
+            $appUrl: '%init_bureau_securite.app_url%'
+
+    Webgiciel2\InitBureauSecurite\Service\InitBureauSecuriteManager:
+        arguments:
+            $proprioUsername: '%init_bureau_securite.proprietaire.username%'
+            $proprioEmail: '%init_bureau_securite.proprietaire.email%'
+            $techUsername: '%init_bureau_securite.technicien.username%'
+            $techEmail: '%init_bureau_securite.technicien.email%'

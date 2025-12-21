@@ -22,9 +22,34 @@ class InitBureauSecuriteExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter(
-            'init_bureau_securite.mail_robot',
+            'init_bureau_securite.app_url', 
+            $config['app_url']
+        );
+
+        $container->setParameter(
+            'init_bureau_securite.mail_robot', 
             $config['mail_robot']
         );
+
+        $container->setParameter(
+            'init_bureau_securite.proprietaire.username', 
+            $config['proprietaire']['username']
+        );
+        $container->setParameter(
+            'init_bureau_securite.proprietaire.email', 
+            $config['proprietaire']['email']
+        );
+
+        $container->setParameter(
+            'init_bureau_securite.technicien.username', 
+            $config['technicien']['username']
+        );
+        $container->setParameter(
+            'init_bureau_securite.technicien.email', 
+            $config['technicien']['email']
+        );
+
+
 
     }
 }

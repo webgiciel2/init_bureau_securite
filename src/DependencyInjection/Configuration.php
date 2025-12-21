@@ -7,30 +7,41 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('init_bureau_securite');
 
         $treeBuilder->getRootNode()
             ->children()
-                ->arrayNode('proprietaire')
-                    ->children()
-                        ->scalarNode('username')->isRequired()->end()
-                        ->scalarNode('email')->isRequired()->end()
-                    ->end()
+                ->scalarNode('app_url')
+                    ->isRequired()
+                    ->cannotBeEmpty()
                 ->end()
-                ->arrayNode('technicien')
-                    ->children()
-                        ->scalarNode('username')->isRequired()->end()
-                        ->scalarNode('email')->isRequired()->end()
-                    ->end()
-                ->end()
+
                 ->scalarNode('mail_robot')
                     ->isRequired()
                     ->cannotBeEmpty()
+                ->end()
+
+                ->arrayNode('proprietaire')
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('username')->isRequired()->end()
+                        ->scalarNode('email')->isRequired()->end()
+                    ->end()
+                ->end()
+
+                ->arrayNode('technicien')
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('username')->isRequired()->end()
+                        ->scalarNode('email')->isRequired()->end()
+                    ->end()
                 ->end()
             ->end();
 
         return $treeBuilder;
     }
+
 }
