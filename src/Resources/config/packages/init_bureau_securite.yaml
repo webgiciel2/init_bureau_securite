@@ -1,3 +1,0 @@
-# config/packages/init_bureau_securite.yaml
-init_bureau_securite:
-    app_url: 'https://bureau.rafsofstef.ovh'

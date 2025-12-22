@@ -1,4 +1,5 @@
 <?php
+    // src/packages/DependencyInjection/Configuration.php
 
 namespace Webgiciel2\InitBureauSecurite\DependencyInjection;
 
