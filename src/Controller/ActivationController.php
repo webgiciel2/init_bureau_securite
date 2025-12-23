@@ -4,6 +4,7 @@ namespace Webgiciel2\InitBureauSecurite\Controller;
 
 use Webgiciel2\InitBureauSecurite\Repository\SecurAdminRepository;
 use Webgiciel2\InitBureauSecurite\Form\ActivationPasswordType;
+use Webgiciel2\InitBureauSecurite\Form\Data\ActivationPasswordData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
