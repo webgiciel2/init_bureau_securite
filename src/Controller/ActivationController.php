@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class ActivationController extends AbstractController
 {
     #[Route('/activation', name: 'ibs_activation')]
@@ -29,7 +31,11 @@ class ActivationController extends AbstractController
         $user = $repository->findOneByCode($code);
 
         if (!$user) {
-            throw $this->createNotFoundException('Code invalide.');
+            return $this->render(
+                '@InitBureauSecurite/security/activation_invalid.html.twig',
+                [],
+                new Response('', Response::HTTP_BAD_REQUEST)
+            );
         }
 
         if ($user->isActive()) {

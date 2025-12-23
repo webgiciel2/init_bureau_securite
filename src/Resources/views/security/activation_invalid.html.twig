@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activation invalide{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Lien d’activation invalide</h4>
+
+        <p>
+            Le lien d’activation est invalide ou a déjà été utilisé.
+        </p>
+
+        <hr>
+
+        <div class="d-flex gap-2">
+            <a href="{{ path('app_login') }}" class="btn btn-primary">
+                Se connecter
+            </a>
+
+            {# option future #}
+            {# <a href="{{ path('activation_resend') }}" class="btn btn-secondary">
+                Renvoyer l’email
+            </a> #}
+        </div>
+    </div>
+</div>
+{% endblock %}
