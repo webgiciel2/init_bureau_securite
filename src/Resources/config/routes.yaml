@@ -1,0 +1,3 @@
+init_bureau_securite:
+    resource: ../../Controller/
+    type: attribute
