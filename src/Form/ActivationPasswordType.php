@@ -2,8 +2,8 @@
 
 namespace Webgiciel2\InitBureauSecurite\Form;
 
-use App\Form\Data\ActivationPasswordData;
-use App\Form\Constraint\PasswordMatch;
+use Webgiciel2\InitBureauSecurite\Form\Data\ActivationPasswordData;
+use Webgiciel2\InitBureauSecurite\Form\Constraint\PasswordMatch;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
