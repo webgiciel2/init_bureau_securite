@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\EqualTo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ActivationPasswordType extends AbstractType
 {
@@ -17,15 +18,28 @@ class ActivationPasswordType extends AbstractType
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'constraints' => [
-                    new NotBlank(),
-                    new Length(['min' => 8]),
+                    new Assert\NotBlank([
+                        'message' => 'Veuillez saisir un mot de passe.',
+                    ]),
+                    new Assert\Length([
+                        'min' => 8,
+                        'max' => 20,
+                        'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[A-Za-z0-9\-_!@]+$/',
+                        'message' => 'Caractères autorisés : lettres, chiffres et - _ ! @',
+                    ]),
                 ],
             ])
             ->add('password_confirm', PasswordType::class, [
                 'label' => 'Confirmation du mot de passe',
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank(),
+                    new Assert\NotBlank([
+                        'message' => 'Veuillez confirmer le mot de passe.',
+                    ]),
                 ],
             ]);
     }

@@ -10,9 +10,20 @@
     {% endfor %}
 
     {{ form_start(form) }}
-        {{ form_row(form.password) }}
-        {{ form_row(form.password_confirm) }}
 
-        <button class="btn btn-primary">Activer le compte</button>
+        <div>
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password) }}
+            {{ form_errors(form.password) }}
+        </div>
+
+        <div>
+            {{ form_label(form.confirm_password) }}
+            {{ form_widget(form.confirm_password) }}
+            {{ form_errors(form.confirm_password) }}
+        </div>
+
+        <button class="btn btn-primary" type="submit">Activer le compte</button>
+
     {{ form_end(form) }}
 {% endblock %}
