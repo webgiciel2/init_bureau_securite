@@ -13,14 +13,14 @@
 
         <div>
             {{ form_label(form.password) }}
-            {{ form_widget(form.password) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.password) }}
         </div>
 
         <div>
-            {{ form_label(form.confirm_password) }}
-            {{ form_widget(form.confirm_password) }}
-            {{ form_errors(form.confirm_password) }}
+            {{ form_label(form.password_confirm) }}
+            {{ form_widget(form.password_confirm, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.password_confirm) }}
         </div>
 
         <button class="btn btn-primary" type="submit">Activer le compte</button>

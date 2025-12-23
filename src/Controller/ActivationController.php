@@ -48,11 +48,11 @@ class ActivationController extends AbstractController
             $data = $form->getData();
 
             $password = $form->get('password')->getData();
-            $confirmPassword = $form->get('confirm_password')->getData();
+            $confirmPassword = $form->get('password_confirm')->getData();
 
 
             if ($data['password'] !== $passwordConfirm) {
-                $form->get('confirm_password')->addError(
+                $form->get('password_confirm')->addError(
                     new \Symfony\Component\Form\FormError('Les mots de passe ne correspondent pas.')
                 );
                 $this->addFlash('error', 'Les mots de passe ne correspondent pas.');
