@@ -11,6 +11,8 @@
 
     {{ form_start(form) }}
 
+        {{ form_errors(form) }}
+
         <div>
             {{ form_label(form.password) }}
             {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
