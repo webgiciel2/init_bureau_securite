@@ -2,11 +2,13 @@
 
 namespace Webgiciel2\InitBureauSecurite\Form;
 
+use App\Form\Data\ActivationPasswordData;
+use App\Form\Constraint\PasswordMatch;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ActivationPasswordType extends AbstractType
@@ -17,9 +19,7 @@ class ActivationPasswordType extends AbstractType
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Veuillez saisir un mot de passe.',
-                    ]),
+                    new Assert\NotBlank(['message' => 'Veuillez saisir un mot de passe.']),
                     new Assert\Length([
                         'min' => 8,
                         'max' => 20,
@@ -32,14 +32,19 @@ class ActivationPasswordType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('password_confirm', PasswordType::class, [
+            ->add('passwordConfirm', PasswordType::class, [
                 'label' => 'Confirmation du mot de passe',
                 'mapped' => false,
                 'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Veuillez confirmer le mot de passe.',
-                    ]),
+                    new Assert\NotBlank(['message' => 'Veuillez confirmer le mot de passe.']),
                 ],
             ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => ActivationPasswordData::class,
+        ]);
     }
 }

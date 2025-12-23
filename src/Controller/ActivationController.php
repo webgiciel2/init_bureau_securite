@@ -38,36 +38,26 @@ class ActivationController extends AbstractController
         }
 
         if ($user->isActive()) {
-            return $this->redirect('/login');
+            return $this->redirectToRoute('ibs_login');
         }
 
-        $form = $this->createForm(ActivationPasswordType::class);
+        $data = new ActivationPasswordData();
+
+        $form = $this->createForm(ActivationPasswordType::class, $data);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            $hashedPassword = $passwordHasher->hashPassword($user, $data->getPassword());
 
-            $password = $form->get('password')->getData();
-            $confirmPassword = $form->get('password_confirm')->getData();
+            $user->setPassword($hashedPassword);
+            $user->setIsActive(true);
+            $user->setCodeVerif(null);
+            $user->setPasswordResetAt(new \DateTimeImmutable());
 
+            $em->flush();
 
-            if ($data['password'] !== $confirmPassword) {
-                $form->get('password_confirm')->addError(
-                    new \Symfony\Component\Form\FormError('Les mots de passe ne correspondent pas.')
-                );
-                $this->addFlash('error', 'Les mots de passe ne correspondent pas.');
-            } else {
-                $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
-
-                $user->setPassword($hashedPassword);
-                $user->setIsActive(true);
-                $user->setCodeVerif(null);
-                $user->setPasswordResetAt(new \DateTime());
-
-                $em->flush();
-
-                return $this->redirectToRoute('ibs_login');
-            }
+            $this->addFlash('success', 'Votre compte a été activé avec succès !');
+            return $this->redirectToRoute('ibs_login');
         }
 
         return $this->render('@InitBureauSecurite/activation/activate.html.twig', [
