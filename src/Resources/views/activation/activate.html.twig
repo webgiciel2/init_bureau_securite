@@ -13,6 +13,19 @@
         <div class="alert alert-success">{{ flash }}</div>
     {% endfor %}
 
-    {{ form_widget(form) }}
+    {{ form_start(form) }}
 
+        {{ form_errors(form) }}
+
+        <div>
+            {{ form_row(form.password) }}
+        </div>
+
+        <div>
+            {{ form_row(form.password_confirm) }}
+        </div>
+
+        <button class="btn btn-primary" type="submit">Activer le compte</button>
+
+    {{ form_end(form) }}
 {% endblock %}
