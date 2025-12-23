@@ -60,7 +60,7 @@ class ActivationController extends AbstractController
 
                 $em->flush();
 
-                return $this->redirect('/login');
+                return $this->redirectToRoute('ibs_login');
             }
         }
 
