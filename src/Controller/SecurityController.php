@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/logout', name: 'init_bureau_securite_logout')]
+    #[Route('/logout', name: 'ibs_logout')]
     public function logout(): void
     {
         // Symfony gère tout

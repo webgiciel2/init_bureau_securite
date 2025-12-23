@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
-    public const LOGIN_ROUTE = 'init_bureau_securite_login';
+    public const LOGIN_ROUTE = 'ibs_login';
 
     public function __construct(
         private UrlGeneratorInterface $urlGenerator
