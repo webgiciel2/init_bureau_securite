@@ -13,7 +13,7 @@
         <div class="alert alert-success">{{ flash }}</div>
     {% endfor %}
 
-    {{ form_start(form) }}
+    {{ form_start(form, { attr: { 'data-turbo': 'false' } }) }}
 
         {% if not form.vars.valid %}
             <div class="alert alert-danger">
