@@ -12,4 +12,14 @@ use Symfony\Component\Validator\Constraint;
 class PasswordMatch extends Constraint
 {
     public string $message = 'Les mots de passe ne correspondent pas.';
+
+    public function getTargets(): string
+    {
+        return self::CLASS_CONSTRAINT;
+    }
+
+    public function validatedBy(): string
+    {
+        return static::class.'Validator';
+    }
 }
