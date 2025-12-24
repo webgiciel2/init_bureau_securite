@@ -18,11 +18,15 @@
         {{ form_errors(form) }}
 
         <div>
-            {{ form_row(form.password) }}
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password) }}
+            {{ form_errors(form.password) }} {# erreurs champ password #}
         </div>
 
         <div>
-            {{ form_row(form.passwordConfirm) }}
+            {{ form_label(form.passwordConfirm) }}
+            {{ form_widget(form.passwordConfirm) }}
+            {{ form_errors(form.passwordConfirm) }} {# erreurs champ confirmation #}
         </div>
 
         <button class="btn btn-primary" type="submit">Activer le compte</button>

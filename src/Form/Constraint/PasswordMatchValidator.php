@@ -19,7 +19,7 @@ class PasswordMatchValidator extends ConstraintValidator
 
         if ($password !== $confirm) {
             $this->context->buildViolation($constraint->message)
-                ->atPath('password_confirm')
+                ->atPath('passwordConfirm')
                 ->addViolation();
         }
     }
