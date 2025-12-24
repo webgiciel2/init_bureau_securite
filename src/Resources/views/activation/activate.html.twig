@@ -15,7 +15,11 @@
 
     {{ form_start(form) }}
 
-        {{ form_errors(form) }}
+        {% if not form.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
 
         <div>
             {{ form_label(form.password) }}
