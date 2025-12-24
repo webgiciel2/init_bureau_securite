@@ -2,6 +2,8 @@
 
 namespace Webgiciel2\InitBureauSecurite\Form\Data;
 
+use Webgiciel2\InitBureauSecurite\Form\Constraint\PasswordMatch;
+
 class ActivationPasswordData
 {
     private ?string $password = null;

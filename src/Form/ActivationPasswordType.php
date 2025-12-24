@@ -34,7 +34,6 @@ class ActivationPasswordType extends AbstractType
             ])
             ->add('passwordConfirm', PasswordType::class, [
                 'label' => 'Confirmation du mot de passe',
-                'mapped' => false,
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez confirmer le mot de passe.']),
                 ],
