@@ -23,4 +23,30 @@ class SecurityController extends AbstractController
     {
         // Symfony gère tout
     }
+
+    #[Route('/mot-de-passe-oublie', name: 'secur_forgot_password')]
+    public function request(
+        Request $request,
+        EntityManagerInterface $em
+    ): Response {
+        if ($request->isMethod('POST')) {
+            $email = trim($request->request->get('email'));
+
+            $admin = $em->getRepository(SecurAdmin::class)
+                ->findOneBy(['email' => $email]);
+
+            if (!$admin) {
+                $this->addFlash('danger', 'Aucun compte ne correspond à cet email.');
+            } else {
+                // Étape 1 : pas encore d’email, juste validation
+                $this->addFlash(
+                    'success',
+                    'Si un compte existe, un email de réinitialisation sera envoyé.'
+                );
+            }
+        }
+
+        return $this->render('@InitBureauSecurite/security/forgot_password.html.twig');
+    }
+
 }
