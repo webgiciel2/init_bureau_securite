@@ -9,21 +9,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/login', name: 'ibs_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        return $this->render('@InitBureauSecurite/security/login.html.twig', [
-            'last_username' => $authenticationUtils->getLastUsername(),
-            'error' => $authenticationUtils->getLastAuthenticationError(),
-        ]);
-    }
-
-    #[Route('/logout', name: 'ibs_logout')]
-    public function logout(): void
-    {
-        // Symfony gère tout
-    }
-
     #[Route('/mot-de-passe-oublie', name: 'ibs_forgot_password')]
     public function request(
         Request $request,
@@ -47,6 +32,21 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('@InitBureauSecurite/security/forgot_password.html.twig');
+    }
+
+    #[Route('/login', name: 'ibs_login')]
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        return $this->render('@InitBureauSecurite/security/login.html.twig', [
+            'last_username' => $authenticationUtils->getLastUsername(),
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+        ]);
+    }
+
+    #[Route('/logout', name: 'ibs_logout')]
+    public function logout(): void
+    {
+        // Symfony gère tout
     }
 
 }
