@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
         // Symfony gère tout
     }
 
-    #[Route('/mot-de-passe-oublie', name: 'secur_forgot_password')]
+    #[Route('/mot-de-passe-oublie', name: 'ibs_forgot_password')]
     public function request(
         Request $request,
         EntityManagerInterface $em
